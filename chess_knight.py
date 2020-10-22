@@ -27,16 +27,19 @@ def chess_knight(start, nb_moves):
         raise TypeError("données d'entrée incorrectes") 
     
     reachableCells = [start]
+    alreadyVisitedCell = []
     #On boucle sur le nombre de mouvement que le cavalier peut faire
     for i in range(nb_moves):
         reachableCoord = []
         # si il y a plusieurs mouvements, on regarde les cellules accessibles depuis les cellules précédentes
         for cell in reachableCells:
-            # On change le nom de la cellule en deux coordonnées
-            [x, y] = cell2coord(cell)
-            # On créé la liste des position accessible depuis la position actuelle
-            reachableCoord += nextpos(x, y)
-            # On passe les coordonnées sous format cellule
+            if cell not in alreadyVisitedCell:
+                alreadyVisitedCell.append(cell)
+                # On change le nom de la cellule en deux coordonnées
+                [x, y] = cell2coord(cell)
+                # On créé la liste des position accessible depuis la position actuelle
+                reachableCoord += nextpos(x, y)
+                # On passe les coordonnées sous format cellule
         reachableCells += [coord2cell(coord) for coord in reachableCoord]
     # On enlève la cellule de départ de la liste
     reachableCells.remove(start)
