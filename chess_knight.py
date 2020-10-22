@@ -33,7 +33,9 @@ def chess_knight(start, nb_moves):
         reachableCoord = []
         # si il y a plusieurs mouvements, on regarde les cellules accessibles depuis les cellules précédentes
         for cell in reachableCells:
+            # On vérifie que l'on a pas déjà analysé cette cellule
             if cell not in alreadyVisitedCell:
+                #On ajoute la cellule actuelle à la liste des cellules visitées
                 alreadyVisitedCell.append(cell)
                 # On change le nom de la cellule en deux coordonnées
                 [x, y] = cell2coord(cell)
